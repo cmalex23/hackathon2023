@@ -38,10 +38,10 @@
   width: 0.5rem;
   height: 0.5rem;
   position: absolute;
-  border-top: 3px solid black;
-  border-left: 3px solid black;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
   content: '';
-  box-shadow: -0.0625rem -0.0625rem 0 black;
+  box-shadow: -0.0625rem -0.0625rem 0 white;
 }
 .arrowLeft::before {
   transform: rotate(-45deg);

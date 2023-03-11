@@ -1,4 +1,4 @@
-interface SetUpCreatorProps {
+export interface SetUpCreatorProps {
   name: string;
   email: string;
   tokenName: string;
