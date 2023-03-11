@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
 import { Button, Card, CardContent, Container, Stack } from '@mui/material';
 import Alert from '@mui/material/Alert';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { issueTokens } from '../../../utils/contractUtils';
+import { setCreatorInLocalStorage } from '../../../utils/localStorage';
 import FormProvider from '../../FormProvider';
 import RHFTextField from '../../RHFTextField';
-import MockSetUpCreator from './MockApiSetUpCreator';
-import { setCreatorInLocalStorage } from '../../../utils/localStorage';
 
 const SetUpCreator = ({ setCreator }: any) => {
   const [error, setError] = useState<string | null>(null);
@@ -13,20 +13,22 @@ const SetUpCreator = ({ setCreator }: any) => {
 
   const { handleSubmit } = methods;
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     setError(null);
-    const res = MockSetUpCreator(data);
-    if (res.succeed) {
+
+    const ressionId = await issueTokens(data.tokenName, data.tokenSymbol, 1000);
+
+    if (ressionId) {
       // Store un localstorage for mocking
       setCreatorInLocalStorage(data);
       setCreator(data);
     } else {
-      setError(res?.message || 'An error occured please try again');
+      // setError(res?.message || 'An error occured please try again');
     }
   };
 
   return (
-    <Container maxWidth='sm' sx={{ mt: 20 }}>
+    <Container maxWidth='sm' sx={{ mt: 5 }}>
       <Card>
         <CardContent sx={{ textAlign: 'center' }}>
           {error ? (
@@ -94,6 +96,7 @@ const SetUpCreator = ({ setCreator }: any) => {
               />
             </Stack>
             <Button
+              variant='contained'
               sx={{
                 width: '100%',
                 marginTop: '1rem',

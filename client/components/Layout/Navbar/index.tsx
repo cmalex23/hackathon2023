@@ -69,6 +69,12 @@ export const Navbar = () => {
               </NavItem>
 
               <NavItem>
+                <Link href='/dashboard/transactions' className='nav-link'>
+                  <Button>Transactions</Button>
+                </Link>
+              </NavItem>
+
+              <NavItem>
                 <Link href={routeNames.swap} className='nav-link'>
                   <Button>Swap</Button>
                 </Link>
