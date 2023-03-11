@@ -24,6 +24,7 @@
     "bootstrap": "4.6.2",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",
+    "keen-slider": "^6.8.5",
     "moment": "2.29.1",
     "next": "13.2.3",
     "next-transpile-modules": "^10.0.0",

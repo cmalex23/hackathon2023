@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 
-import { deleteCreatorFromLocalStorage } from '../../utils/localStorage';
+import {
+  deleteCreatorFromLocalStorage,
+  getCreatorFromLocalStorage
+} from '../../utils/localStorage';
 
 import { SetUpCreator, EditCreator } from '../../components/CreatorDashboard';
 import { NotAuthRedirectWrapper } from '../../components/NotAuthRedirectWrapper';
 import { Button } from 'react-bootstrap';
 
 const CreatorDashboardPage = () => {
-  const [isFirstTime, setisFirstTime] = useState(true);
-  // Use creator state for mocking
   const [creator, setCreator] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const creatorTmp = await getCreatorFromLocalStorage();
+      setCreator(creatorTmp);
+    })();
+  }, []);
 
   return (
     <>

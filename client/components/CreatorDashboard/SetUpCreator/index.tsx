@@ -50,13 +50,13 @@ const SetUpCreator = ({ setCreator }: any) => {
                 className='w-1/2'
                 name='name'
                 label='Name'
-                variant='filled'
+                variant='standard'
                 required
               />
               <RHFTextField
                 name='email'
                 label='Email'
-                variant='filled'
+                variant='standard'
                 type='email'
                 required
               />
@@ -70,13 +70,13 @@ const SetUpCreator = ({ setCreator }: any) => {
               <RHFTextField
                 name='tokenName'
                 label='Token Name'
-                variant='filled'
+                variant='standard'
                 required
               />
               <RHFTextField
                 name='tokenSymbol'
                 label='Token Symbol'
-                variant='filled'
+                variant='standard'
                 required
               />
             </Stack>
@@ -86,11 +86,11 @@ const SetUpCreator = ({ setCreator }: any) => {
               spacing={1}
               margin={1}
             >
-              <RHFTextField name='twitter' label='Twitter' variant='filled' />
+              <RHFTextField name='twitter' label='Twitter' variant='standard' />
               <RHFTextField
                 name='instagram'
                 label='Instagram'
-                variant='filled'
+                variant='standard'
               />
             </Stack>
             <Button
