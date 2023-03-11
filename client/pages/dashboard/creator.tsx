@@ -1,9 +1,5 @@
-import React from 'react';
-import { walletConnectV2ProjectId } from '../../config';
-import { routeNames } from '../../routes';
-import { AuthRedirectWrapper } from '../../components/AuthRedirectWrapper';
 import Head from 'next/head';
-import dynamic from 'next/dynamic';
+import { NotAuthRedirectWrapper } from '../../components/NotAuthRedirectWrapper';
 
 const CreatorDashboardPage = () => {
   return (
@@ -24,5 +20,9 @@ const CreatorDashboardPage = () => {
 };
 
 export default function CreatorDashboard() {
-  return <CreatorDashboardPage />;
+  return (
+    <NotAuthRedirectWrapper>
+      <CreatorDashboardPage />
+    </NotAuthRedirectWrapper>
+  );
 }
