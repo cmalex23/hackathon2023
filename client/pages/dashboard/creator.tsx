@@ -8,6 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 import { SetUpCreator, EditCreator } from '../../components/CreatorDashboard';
+import { NotAuthRedirectWrapper } from '../../components/NotAuthRedirectWrapper';
 
 const CreatorDashboardPage = () => {
   const [isFirstTime, setisFirstTime] = useState(true);
@@ -48,5 +49,9 @@ const CreatorDashboardPage = () => {
 };
 
 export default function CreatorDashboard() {
-  return <CreatorDashboardPage />;
+  return (
+    <NotAuthRedirectWrapper>
+      <CreatorDashboardPage />
+    </NotAuthRedirectWrapper>
+  );
 }
