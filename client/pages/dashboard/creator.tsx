@@ -18,8 +18,6 @@ const CreatorDashboardPage = () => {
       <Head>
         <title>Creator Dashboard</title>
         <meta name='description' content='Creator dashboard' />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/favicon.ico' />
       </Head>
       <main className='mt-5'>
         <div className='home d-flex flex-fill align-items-center justify-content-center'>

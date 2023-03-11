@@ -3,6 +3,7 @@ import * as React from 'react';
 import { dAppName } from '../config';
 import { routeNames } from '../routes';
 import Link from 'next/link';
+import { Button, Card } from '@mui/material';
 
 export default function Index() {
   return (
@@ -16,7 +17,7 @@ export default function Index() {
         <div className='d-flex flex-fill align-items-center container'>
           <div className='row w-100'>
             <div className='col-12 col-md-8 col-lg-5 mx-auto'>
-              <div className='card shadow-sm rounded p-4 border-0'>
+              <Card>
                 <div className='card-body text-center'>
                   <h2 className='mb-3' data-testid='title'>
                     {dAppName}
@@ -27,15 +28,11 @@ export default function Index() {
                     <br /> Login using your MultiversX wallet.
                   </p>
 
-                  <Link
-                    href={routeNames.login}
-                    className='btn btn-primary mt-3 text-white'
-                    data-testid='loginBtn'
-                  >
-                    Login
+                  <Link href={routeNames.login} data-testid='loginBtn'>
+                    <Button variant='contained'>Login</Button>
                   </Link>
                 </div>
-              </div>
+              </Card>
             </div>
           </div>
         </div>
