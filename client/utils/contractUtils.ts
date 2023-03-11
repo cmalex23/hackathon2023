@@ -7,7 +7,7 @@ export const issueTokens = async (
   tokenSymbol: string,
   supply: number
 ) => {
-  const pingTransaction = {
+  const transaction = {
     value: 50000000000000000,
     data: `issueFungibleToken@${toHex(tokenName)}@${toHex(tokenSymbol)}@${toHex(
       supply.toString()
@@ -18,11 +18,11 @@ export const issueTokens = async (
   await refreshAccount();
 
   const { sessionId /*, error*/ } = await sendTransactions({
-    transactions: pingTransaction,
+    transactions: transaction,
     transactionsDisplayInfo: {
-      processingMessage: 'Processing Ping transaction',
-      errorMessage: 'An error has occured during Ping',
-      successMessage: 'Ping transaction successful'
+      processingMessage: 'Processing Transaction',
+      errorMessage: 'An error has occured during transaction',
+      successMessage: 'Transaction successful'
     },
     redirectAfterSign: false
   });
