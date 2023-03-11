@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const DashboardPage = () => {
   return (
-    <Container maxWidth='sm' sx={{ mt: 20 }}>
+    <Container maxWidth='sm' sx={{ mt: 5 }}>
       <Card>
         <CardContent sx={{ textAlign: 'center' }}>
           <Typography variant='h4'>Choose your type</Typography>
@@ -16,10 +16,14 @@ const DashboardPage = () => {
             sx={{ mt: 3 }}
           >
             <Link href='/dashboard/creator'>
-              <Button variant='contained'>Creator</Button>
+              <Button variant='contained' size='large'>
+                Creator
+              </Button>
             </Link>
             <Link href='/dashboard/fan'>
-              <Button variant='contained'>Fan</Button>
+              <Button variant='contained' size='large'>
+                Fan
+              </Button>
             </Link>
           </Stack>
         </CardContent>

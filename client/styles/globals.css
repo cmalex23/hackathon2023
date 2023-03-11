@@ -99,3 +99,10 @@ a {
     color-scheme: dark;
   }
 }
+
+.loginButton {
+  background: unset !important;
+  border: unset !important;
+  color: unset !important;
+  box-shadow: unset !important;
+}
