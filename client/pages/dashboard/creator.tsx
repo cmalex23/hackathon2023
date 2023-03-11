@@ -20,9 +20,9 @@ const CreatorDashboardPage = () => {
         <meta name='description' content='Creator dashboard' />
       </Head>
       <main className='mt-5'>
-        <div className='home d-flex flex-fill align-items-center justify-content-center'>
+        <div className='home d-flex flex-fill flex-column align-items-center justify-content-center'>
           {/* TODO remove box when api is working */}
-          <Box sx={{ minWidth: 120 }}>
+          <Box sx={{ minWidth: 120, marginBottom: 3 }}>
             <FormControl fullWidth>
               <InputLabel id='demo-simple-select-label'>isFirstTime</InputLabel>
               <Select
