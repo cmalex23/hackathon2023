@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef, LegacyRef } from 'react';
+import React, { FC, useState, SetStateAction, useRef, LegacyRef } from 'react';
 import {
   Card,
   CardContent,
@@ -12,12 +12,18 @@ import {
   InputLabel,
   Select,
   SelectChangeEvent,
-  MenuItem
+  MenuItem,
+  Alert,
+  Checkbox,
+  Box,
+  FormGroup,
+  FormControlLabel
 } from '@mui/material';
-// import { FormLabel, Select, Option } from '@mui/joy';
 
 import FormProvider from '../../../FormProvider';
 import RHFTextField from '../../../RHFTextField';
+import MockCreateCampaign from './MockCreateCampaign';
+import { setCampaignsInLocalStorage } from '../../../../utils/localStorage';
 
 import { useForm } from 'react-hook-form';
 
@@ -28,21 +34,57 @@ export interface CreateCompaignModalProps {
   className?: string;
   open: boolean;
   handleClose: () => void;
+  setCampaigns: SetStateAction<any>;
 }
 
-const optionsPlatform = ['twitter', 'facebook', 'instagram'];
+const optionsPlatform = [
+  'twitter',
+  'facebook',
+  'instagram',
+  'youtube',
+  'twitch',
+  'tiktok'
+];
+
+const platformActions: {
+  [key: string]: Array<string>;
+} = {
+  twitter: ['like', 'retweet', 'comment'],
+  facebook: ['like', 'share', 'comment'],
+  instagram: ['like', 'comment'],
+  youtube: ['like', 'share'],
+  twitch: ['like', 'share'],
+  tiktok: ['like', 'share']
+};
 
 const CreateCompaignModal: FC<CreateCompaignModalProps> = ({
   className,
   handleClose,
-  open
+  open,
+  setCampaigns
 }) => {
   const methods = useForm();
+  const [error, setError] = useState<string | null>(null);
   const [name, setName] = useState('');
-  const [platform, setPlatform] = useState('');
+  const [platform, setPlatform] = useState<string>('');
   // const [name, setName] = useState('');
 
   const { handleSubmit } = methods;
+
+  const onSubmit = (data: any) => {
+    setError(null);
+    console.log(data);
+    const res = MockCreateCampaign({ ...data, platform });
+    if (res.succeed) {
+      // Store un localstorage for mocking
+      // setCampaignsInLocalStorage(data);
+      // setCampaigns(data);
+      handleClose();
+    } else {
+      setError(res?.message || 'An error occured please try again');
+    }
+  };
+
   return (
     <>
       <Dialog
@@ -55,6 +97,7 @@ const CreateCompaignModal: FC<CreateCompaignModalProps> = ({
           <DialogTitle id='alert-dialog-title'>Create new Compaign</DialogTitle>
           <DialogContent>
             <DialogContentText id='alert-dialog-description'>
+              {error ? <Alert severity='error'>{error}</Alert> : null}
               <FormProvider methods={methods}>
                 <RHFTextField
                   name='name'
@@ -83,11 +126,22 @@ const CreateCompaignModal: FC<CreateCompaignModalProps> = ({
                     ))}
                   </Select>
                 </FormControl>
+                <Box>
+                  <FormGroup sx={{ display: 'flex', flexDirection: 'row' }}>
+                    {platformActions[platform]?.map((action, i) => (
+                      <FormControlLabel
+                        key={`platform-action-${i}`}
+                        control={<Checkbox />}
+                        label={action}
+                      />
+                    ))}
+                  </FormGroup>
+                </Box>
               </FormProvider>
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Create</Button>
+            <Button onClick={handleSubmit(onSubmit)}>Create</Button>
           </DialogActions>
         </div>
       </Dialog>

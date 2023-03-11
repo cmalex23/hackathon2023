@@ -47,7 +47,6 @@ const SetUpCreator = ({ setCreator }: any) => {
               margin={1}
             >
               <RHFTextField
-                className='w-1/2'
                 name='name'
                 label='Name'
                 variant='standard'

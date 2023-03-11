@@ -8,8 +8,16 @@ import s from './EditCreator.module.css';
 
 const EditCreator = ({ creator }: any) => {
   return (
-    <Container className={'text-center'} sx={{ mt: 20 }}>
+    <Container className={'text-center'}>
       <h1>Welcome {creator.name}</h1>
+      <Card sx={{ mt: 2, display: 'inline-block' }}>
+        <CardContent sx={{ textAlign: 'center' }}>
+          Token Name : {creator.tokenName}
+          <br />
+          Token Symbol : {creator.tokenSymbol}
+          <br />
+        </CardContent>
+      </Card>
       <TitleView className={s.title}>My Compaigns</TitleView>
       <CreatorCompaigns />
       <TitleView className={s.title}>My Experiences</TitleView>
