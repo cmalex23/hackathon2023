@@ -4,6 +4,7 @@ export const routeNames = {
   home: '/',
   dashboard: '/dashboard',
   statistics: '/statistics',
+  swap: '/swap',
   login: '/login'
 };
 

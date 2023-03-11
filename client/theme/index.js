@@ -1,5 +1,5 @@
 // @mui
-import { CssBaseline, useMediaQuery } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 import {
   createTheme,
   ThemeProvider as MUIThemeProvider
@@ -20,8 +20,8 @@ ThemeProvider.propTypes = {
 };
 
 export default function ThemeProvider({ children }) {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const isLight = !prefersDarkMode;
+  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const isLight = false;
 
   const themeOptions = useMemo(
     () => ({
