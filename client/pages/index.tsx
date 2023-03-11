@@ -30,7 +30,7 @@ export default function Index() {
                   </p>
 
                   <Link
-                    href={routeNames.unlock}
+                    href={routeNames.login}
                     className='btn btn-primary mt-3 text-white'
                     data-testid='loginBtn'
                   >

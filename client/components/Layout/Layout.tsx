@@ -14,7 +14,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       <main className='d-flex flex-column flex-grow-1'>
         <AuthenticatedRoutesWrapper
           routes={routes}
-          unlockRoute={`${routeNames.unlock}${query}`}
+          unlockRoute={`${routeNames.login}${query}`}
         >
           {children}
         </AuthenticatedRoutesWrapper>
