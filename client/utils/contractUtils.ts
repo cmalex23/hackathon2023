@@ -2,6 +2,7 @@ import { sendTransactions } from '@multiversx/sdk-dapp/services';
 import { refreshAccount } from '@multiversx/sdk-dapp/utils';
 import { contractAddress } from '../config';
 
+// INFO1: This is the function that will be called when the user clicks the "Create Account" button
 export const issueTokens = async (
   tokenName: string,
   tokenSymbol: string,
@@ -12,6 +13,28 @@ export const issueTokens = async (
     data: `issueFungibleToken@${toHex(tokenName)}@${toHex(tokenSymbol)}@${toHex(
       supply.toString()
     )}`,
+    receiver: contractAddress,
+    gasLimit: '60000000'
+  };
+  await refreshAccount();
+
+  const { sessionId /*, error*/ } = await sendTransactions({
+    transactions: transaction,
+    transactionsDisplayInfo: {
+      processingMessage: 'Processing Transaction',
+      errorMessage: 'An error has occured during transaction',
+      successMessage: 'Transaction successful'
+    },
+    redirectAfterSign: false
+  });
+  return sessionId;
+};
+
+// INFO2: This is the function that will be called when the user clicks the "Buy Experience" button
+export const onBuyExperience = async (amount: number) => {
+  const transaction = {
+    value: 0,
+    data: `buyExperience@${toHex(amount.toString())}`,
     receiver: contractAddress,
     gasLimit: '60000000'
   };
