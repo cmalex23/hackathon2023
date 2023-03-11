@@ -8,19 +8,19 @@ function createGradient(color1, color2) {
 
 // SETUP COLORS
 const PRIMARY = {
-  lighter: '#B0A5F4',
-  light: '#8978F6',
-  main: '#6851FF',
-  dark: '#5845D9',
-  darker: '#4536A7',
+  lighter: '#D1E9FC',
+  light: '#76B0F1',
+  main: '#3C79DA',
+  dark: '#3162B0',
+  darker: '#061B64',
   contrastText: '#fff'
 };
 const PRIMARY_DARK = {
-  lighter: '#B0A5F4',
-  light: '#998AFA',
-  main: '#8875FF',
-  dark: '#6A5BC9',
-  darker: '#4536A7',
+  lighter: '#D1E9FC',
+  light: '#76B0F1',
+  main: '#619AF5',
+  dark: '#3162B0',
+  darker: '#061B64',
   contrastText: '#fff'
 };
 const SECONDARY = {
@@ -133,7 +133,11 @@ const palette = {
     primary: PRIMARY_DARK,
     mode: 'dark',
     text: { primary: '#fff', secondary: GREY[500], disabled: GREY[600] },
-    background: { paper: '#282A4D', default: '#1E203B', neutral: GREY[500_16] },
+    background: {
+      paper: '#2C3A55',
+      default: '#1E283B',
+      neutral: GREY[500_16]
+    },
     action: { active: GREY[500], ...COMMON.action }
   }
 };
