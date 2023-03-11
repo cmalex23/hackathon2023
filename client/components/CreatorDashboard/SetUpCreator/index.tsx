@@ -1,26 +1,25 @@
-import React, { FormEvent } from 'react';
+import { Box, Button, Card, CardContent, Container } from '@mui/material';
 import Alert from '@mui/material/Alert';
-import MockSetUpCreator from './MockApiSetUpCreator';
-import { Controller, useForm, FormProvider as Form } from 'react-hook-form';
+import { FormEvent } from 'react';
+import { useForm } from 'react-hook-form';
+import FormProvider from '../../FormProvider';
 import RHFTextField from '../../RHFTextField';
-import {
-  Button,
-  Card,
-  CardContent,
-  Box,
-  Container,
-  TextField
-} from '@mui/material';
 
 const SetUpCreator = () => {
-  const { handleSubmit, reset, control } = useForm();
-  const onSubmit = (data: any) => console.log(data);
+  const methods = useForm();
 
-  const handleRegister = (e: FormEvent) => {
-    e.preventDefault();
-    console.log(e.currentTarget);
+  const {
+    reset,
+    setError,
+    handleSubmit,
+    formState: { errors, isSubmitting }
+  } = methods;
+
+  const onSubmit = (data: any) => {
+    console.log(data);
     // const res = MockSetUpCreator();
   };
+
   return (
     <Container maxWidth='sm' sx={{ mt: 20 }}>
       <Card>
@@ -90,13 +89,11 @@ const SetUpCreator = () => {
             {/* </>
               )} */}
             {/* /> */}
-            <Form>
-              <form onSubmit={() => console.log('yoyoyo')}>
-                <RHFTextField name='Instagram' label='Instagram' />
-                <RHFTextField name='twitter' label='twitter' />
-                <Button onClick={handleSubmit(onSubmit)}>Create Account</Button>
-              </form>
-            </Form>
+            <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+              <RHFTextField name='Instagram' label='Instagram' />
+              <RHFTextField name='twitter' label='twitter' />
+              <Button type='submit'>Create Account</Button>
+            </FormProvider>
           </Box>
         </CardContent>
       </Card>
