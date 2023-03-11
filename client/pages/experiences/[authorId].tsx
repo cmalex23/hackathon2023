@@ -1,18 +1,21 @@
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import {
   Box,
+  Button,
   Card,
   CardContent,
   Container,
-  Typography,
-  useTheme
+  Typography
 } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Autoplay } from 'swiper';
-import { Swiper as SwiperClass } from 'swiper/types';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperClass } from 'swiper/types';
 
 const EXPERIENCES = [
   {
@@ -24,6 +27,16 @@ const EXPERIENCES = [
     id: '2',
     title: 'Experience 2',
     description: 'Description 2'
+  },
+  {
+    id: '1',
+    title: 'Experience 1',
+    description: 'Description 1'
+  },
+  {
+    id: '1',
+    title: 'Experience 1',
+    description: 'Description 1'
   },
   {
     id: '1',
@@ -89,7 +102,10 @@ const ExperiencesPage = () => {
           ))}
         </Swiper>
 
-        <Box
+        <Button
+          variant='contained'
+          size='large'
+          color='inherit'
           sx={{
             position: 'absolute',
             top: '50%',
@@ -100,26 +116,25 @@ const ExperiencesPage = () => {
           }}
           onClick={handlePrevious}
         >
-          <Typography variant='h1' color='primary'>
-            {'<'}
-          </Typography>
-        </Box>
+          <KeyboardArrowLeftIcon />
+        </Button>
 
-        <Box
+        <Button
+          variant='contained'
+          size='large'
+          color='inherit'
           sx={{
             position: 'absolute',
             top: '50%',
-            left: 0,
-            transform: 'translateY(50%)',
+            right: 0,
+            transform: 'translateY(-50%)',
             zIndex: 10,
             cursor: 'pointer'
           }}
           onClick={handleNext}
         >
-          <Typography variant='h1' color='primary'>
-            {'>'}
-          </Typography>
-        </Box>
+          <KeyboardArrowRightIcon />
+        </Button>
       </Box>
     </Container>
   );
@@ -128,9 +143,31 @@ const ExperiencesPage = () => {
 const ExperienceCard = ({ experience }: any) => {
   return (
     <Card>
-      <CardContent>
-        <Typography variant='h6'>{experience.title}</Typography>
-        <Typography sx={{ mt: 2 }}>{experience.description}</Typography>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`https://source.unsplash.com/random/${Math.floor(
+          Math.random() * 1000
+        )}`}
+        alt={`Creator #${0 + 1}`}
+        style={{
+          minWidth: '150px',
+          minHeight: '150px',
+          borderRadius: '12px'
+        }}
+      />
+
+      <CardContent sx={{ textAlign: 'center' }}>
+        <Typography variant='h5'>{experience.title}</Typography>
+        <Typography sx={{ mt: 1, mb: 2 }}>{experience.description}</Typography>
+
+        <Button
+          variant='contained'
+          size='large'
+          startIcon={<AccountBalanceWalletIcon />}
+          fullWidth
+        >
+          Buy for {experience.price ?? 20} SAL
+        </Button>
       </CardContent>
     </Card>
   );
