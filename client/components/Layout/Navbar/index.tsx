@@ -8,6 +8,14 @@ import { dAppName } from '../../../config';
 import { routeNames } from '../../../routes';
 import Link from 'next/link';
 import Image from 'next/image';
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  FormLabel,
+  Typography
+} from '@mui/material';
 
 export const Navbar = () => {
   const isLoggedIn = useGetIsLoggedIn();
@@ -17,11 +25,24 @@ export const Navbar = () => {
   };
 
   return (
-    <BsNavbar className='bg-white border-bottom px-4 py-3'>
-      <div className='container-fluid'>
+    <AppBar>
+      <Container
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          height: 84
+        }}
+      >
         <Link
           className='d-flex align-items-center navbar-brand mr-0'
           href={isLoggedIn ? routeNames.dashboard : routeNames.home}
+          style={{
+            textDecoration: 'none',
+            color: 'inherit',
+            display: 'flex',
+            alignItems: 'center'
+          }}
         >
           <Image
             src='/assets/img/multiversx.svg'
@@ -30,8 +51,10 @@ export const Navbar = () => {
             height={100}
             alt='MultiversX'
           />
-          <span className='dapp-name text-muted'>{dAppName}</span>
+          <Typography variant='h5'>{dAppName}</Typography>
         </Link>
+
+        <Box sx={{ flexGrow: 1 }} />
 
         <Nav className='ml-auto'>
           {isLoggedIn && (
@@ -44,15 +67,22 @@ export const Navbar = () => {
                   />
                 </Link>
               </NavItem>
+
               <NavItem>
-                <button className='btn btn-link' onClick={handleLogout}>
-                  Close
-                </button>
+                <Link href={routeNames.swap} className='nav-link'>
+                  <Button>Swap</Button>
+                </Link>
+              </NavItem>
+
+              <NavItem>
+                <div className='nav-link'>
+                  <Button onClick={handleLogout}>Disconnect</Button>
+                </div>
               </NavItem>
             </>
           )}
         </Nav>
-      </div>
-    </BsNavbar>
+      </Container>
+    </AppBar>
   );
 };
