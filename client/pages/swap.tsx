@@ -4,15 +4,16 @@ import {
   CardContent,
   Container,
   InputBase,
-  Paper,
   Stack,
-  TextField,
-  Typography,
-  useTheme
+  styled,
+  Typography
 } from '@mui/material';
 
+const InputStyled = styled(InputBase)`
+  font-size: 2rem;
+`;
+
 const SwapPage = () => {
-  const theme = useTheme();
   return (
     <Container maxWidth='sm' sx={{ mt: 5 }}>
       <Card>
@@ -21,21 +22,34 @@ const SwapPage = () => {
             Swap
           </Typography>
 
-          <Card></Card>
-          <Stack
-            direction='row'
-            justifyContent='space-between'
+          <Card
             sx={{
-              bgcolor: 'background.neutral',
-              border: 1,
-              borderRadius: theme.shape.borderRadius,
-              borderColor: 'grey.50032'
+              p: 2,
+              bgcolor: 'background.neutral'
             }}
+            variant='outlined'
           >
-            <InputBase type='number' id='token1' placeholder='0' />
+            <Stack direction='row' justifyContent='space-between'>
+              <InputStyled type='number' id='token1' placeholder='0' />
 
-            <SelectTokenButton />
-          </Stack>
+              <SelectTokenButton />
+            </Stack>
+          </Card>
+
+          <Card
+            sx={{
+              p: 2,
+              mt: 2,
+              bgcolor: 'background.neutral'
+            }}
+            variant='outlined'
+          >
+            <Stack direction='row' justifyContent='space-between'>
+              <InputStyled type='number' id='token1' placeholder='0' />
+
+              <SelectTokenButton />
+            </Stack>
+          </Card>
         </CardContent>
       </Card>
     </Container>
