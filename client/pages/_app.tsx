@@ -11,6 +11,7 @@ import {
   walletConnectV2ProjectId,
   sampleAuthenticatedDomains
 } from '../config';
+import ThemeProvider from '../theme';
 import { Layout } from '../components/Layout';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -44,22 +45,24 @@ export default function App({ Component, pageProps }: AppProps) {
       <AxiosInterceptorContext.Interceptor
         authenticatedDomanis={sampleAuthenticatedDomains}
       >
-        <DappProvider
-          environment={EnvironmentsEnum.devnet}
-          customNetworkConfig={{
-            name: 'customConfig',
-            apiTimeout,
-            walletConnectV2ProjectId
-          }}
-        >
-          <Layout>
-            <AxiosInterceptorContext.Listener />
-            <TransactionsToastList />
-            <NotificationModal />
-            <SignTransactionsModals className='custom-class-for-modals' />
-            <Component {...pageProps} />
-          </Layout>
-        </DappProvider>
+        <ThemeProvider>
+          <DappProvider
+            environment={EnvironmentsEnum.devnet}
+            customNetworkConfig={{
+              name: 'customConfig',
+              apiTimeout,
+              walletConnectV2ProjectId
+            }}
+          >
+            <Layout>
+              <AxiosInterceptorContext.Listener />
+              <TransactionsToastList />
+              <NotificationModal />
+              <SignTransactionsModals className='custom-class-for-modals' />
+              <Component {...pageProps} />
+            </Layout>
+          </DappProvider>
+        </ThemeProvider>
       </AxiosInterceptorContext.Interceptor>
     </AxiosInterceptorContext.Provider>
   );
