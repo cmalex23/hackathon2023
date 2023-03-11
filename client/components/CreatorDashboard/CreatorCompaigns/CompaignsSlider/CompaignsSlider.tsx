@@ -62,6 +62,7 @@ const CompaignsSlider: FC<CompaignsSliderProps> = ({
           className={cn('keen-slider', s.slider, {
             [s.justifyCenter]: screen !== 's' && compaigns.length < 4
           })}
+          style={{ overflow: 'visible' }}
         >
           {compaigns?.map((compaign, i) => (
             <div

@@ -16,12 +16,14 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperClass } from 'swiper/types';
+import { onBuyExperience } from '../../utils/contractUtils';
 
 const EXPERIENCES = [
   {
     id: '1',
     title: 'Experience 1',
-    description: 'Description 1'
+    description: 'Description 1',
+    price: 1
   },
   {
     id: '2',
@@ -141,6 +143,10 @@ const ExperiencesPage = () => {
 };
 
 const ExperienceCard = ({ experience }: any) => {
+  const onBuy = () => {
+    onBuyExperience(experience.price ?? 5000);
+  };
+
   return (
     <Card>
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -161,6 +167,7 @@ const ExperienceCard = ({ experience }: any) => {
         <Typography sx={{ mt: 1, mb: 2 }}>{experience.description}</Typography>
 
         <Button
+          onClick={onBuy}
           variant='contained'
           size='large'
           startIcon={<AccountBalanceWalletIcon />}

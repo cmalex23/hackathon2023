@@ -106,3 +106,8 @@ a {
   color: unset !important;
   box-shadow: unset !important;
 }
+
+.dapp-core-component__dappModalStyles__dappModalContent,
+.dapp-core-component__transactionsToastList-styles__toasts {
+  color: #000 !important;
+}

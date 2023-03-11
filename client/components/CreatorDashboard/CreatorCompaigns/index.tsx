@@ -8,7 +8,14 @@ import CreateCompaignModal from './CreateCompaignModal';
 import s from './CreatorCompaigns.module.css';
 import cn from 'classnames';
 
-const mock = ['toto', 'tato', 'tota', 'tata', 'bobo', 'coco'];
+const mock = [
+  'campaign1',
+  'campaign2',
+  'campaign3',
+  'campaign4',
+  'campaign5',
+  'campaign6'
+];
 
 const CreatorCompaigns = ({ creator, className }: any) => {
   const [openModal, setOpenModal] = useState(false);

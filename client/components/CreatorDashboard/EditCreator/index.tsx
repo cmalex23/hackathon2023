@@ -24,7 +24,7 @@ const EditCreator = ({ creator }: any) => {
       <Card sx={{ mt: 2 }}>
         <CardContent sx={{ textAlign: 'center' }}>
           {/* <h2>My Experiences</h2> */}
-          titi
+          exp1
         </CardContent>
       </Card>
     </Container>
