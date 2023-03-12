@@ -3,7 +3,7 @@ import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import Link from 'next/link';
 
-import { StatisticsLayout } from './components/StatisticsLayout';
+import StatisticsLayout from './components/StatisticsLayout';
 import { routeNames } from '../../routes';
 import { Loader, PageState } from '../../components';
 import { TOOLS_API_URL } from '../../config';

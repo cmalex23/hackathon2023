@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { routeNames } from '../../../routes';
 
-export const StatisticsLayout = ({ children }: PropsWithChildren) => {
+const StatisticsLayout = ({ children }: PropsWithChildren) => {
   return (
     <div className='container py-4'>
       <div className='row'>
@@ -35,3 +35,5 @@ export const StatisticsLayout = ({ children }: PropsWithChildren) => {
     </div>
   );
 };
+
+export default StatisticsLayout;
