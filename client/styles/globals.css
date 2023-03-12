@@ -108,6 +108,7 @@ a {
 }
 
 .dapp-core-component__dappModalStyles__dappModalContent,
-.dapp-core-component__transactionsToastList-styles__toasts {
+.dapp-core-component__transactionsToastList-styles__toasts,
+.list-group-item {
   color: #000 !important;
 }

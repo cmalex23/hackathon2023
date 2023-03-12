@@ -12,6 +12,7 @@ import {
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import SouthIcon from '@mui/icons-material/South';
 import { useState } from 'react';
+import PickTokenModal from '../components/PickTokenModal';
 
 const DEFAULT_TOKEN = {
   amount: 0,
@@ -126,22 +127,48 @@ const TokenInput = ({
           }
         />
 
-        <SelectTokenButton token={token?.symbol} />
+        <SelectTokenButton
+          token={token?.symbol}
+          onTokenSelected={(tokenSymbol: string) =>
+            onChange({
+              amount,
+              symbol: tokenSymbol
+            })
+          }
+        />
       </Stack>
     </Card>
   );
 };
 
-const SelectTokenButton = ({ token }: { token?: string }) => {
+const SelectTokenButton = ({
+  token,
+  onTokenSelected
+}: {
+  token?: string;
+  onTokenSelected?: any;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <Button
-      variant='contained'
-      color={token ? 'inherit' : 'primary'}
-      sx={{ borderRadius: 90, fontSize: '1rem' }}
-      endIcon={<KeyboardArrowDownIcon />}
-    >
-      {token?.toUpperCase() ?? 'Select Token'}
-    </Button>
+    <>
+      <Button
+        onClick={() => setIsOpen(true)}
+        variant='contained'
+        color={token ? 'inherit' : 'primary'}
+        sx={{ borderRadius: 90, fontSize: '1rem' }}
+        endIcon={<KeyboardArrowDownIcon />}
+      >
+        {token?.toUpperCase() ?? 'Select Token'}
+      </Button>
+      {isOpen && (
+        <PickTokenModal
+          isOpen={isOpen}
+          handleClose={() => setIsOpen(false)}
+          onTokenSelected={onTokenSelected}
+        />
+      )}
+    </>
   );
 };
 
