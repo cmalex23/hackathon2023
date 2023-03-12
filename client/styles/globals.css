@@ -112,3 +112,7 @@ a {
 .list-group-item {
   color: #000 !important;
 }
+
+footer div a {
+  color: #ffffffAE !important;
+}

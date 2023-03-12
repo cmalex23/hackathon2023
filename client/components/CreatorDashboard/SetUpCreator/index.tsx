@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
 import { Button, Card, CardContent, Container, Stack } from '@mui/material';
 import Alert from '@mui/material/Alert';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { issueTokens } from '../../../utils/contractUtils';
+import { setCreatorInLocalStorage } from '../../../utils/localStorage';
 import FormProvider from '../../FormProvider';
 import RHFTextField from '../../RHFTextField';
-import MockSetUpCreator from './MockApiSetUpCreator';
-import { setCreatorInLocalStorage } from '../../../utils/localStorage';
-import { issueTokens } from '../../../utils/contractUtils';
 
 const SetUpCreator = ({ setCreator }: any) => {
   const [error, setError] = useState<string | null>(null);
@@ -17,13 +16,13 @@ const SetUpCreator = ({ setCreator }: any) => {
   const onSubmit = async (data: any) => {
     setError(null);
 
-    const ressionId = await issueTokens(
+    const sessionId = await issueTokens(
       data.tokenName,
       data.tokenSymbol,
       100000
     );
 
-    if (ressionId) {
+    if (sessionId) {
       // Store un localstorage for mocking
       setCreatorInLocalStorage(data);
       setCreator(data);

@@ -1,5 +1,5 @@
 export const contractAddress =
-  'erd1qqqqqqqqqqqqqpgqggl7h9l5227fqpxyj4a5hv8uhj57sa597wpqagj045';
+  'erd1qqqqqqqqqqqqqpgqsxd5zwqh0cf3azau89sm8r82dn8kx6ps7wpqm76wgy';
 
 export const dAppName = 'NextJS Dapp';
 

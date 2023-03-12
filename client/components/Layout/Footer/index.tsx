@@ -12,7 +12,7 @@ export const Footer = () => {
           className='d-flex align-items-center'
           href='https://multiversx.com/'
         >
-          Made by MultiversX.
+          Made with MultiversX.
         </Link>
       </div>
     </footer>
