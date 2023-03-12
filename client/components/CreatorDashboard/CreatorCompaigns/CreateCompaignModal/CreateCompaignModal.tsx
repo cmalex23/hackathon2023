@@ -34,7 +34,7 @@ export interface CreateCompaignModalProps {
   className?: string;
   open: boolean;
   handleClose: () => void;
-  setCampaigns: SetStateAction<any>;
+  // setCampaigns: SetStateAction<any>;
 }
 
 const optionsPlatform = [
@@ -60,8 +60,8 @@ const platformActions: {
 const CreateCompaignModal: FC<CreateCompaignModalProps> = ({
   className,
   handleClose,
-  open,
-  setCampaigns
+  open
+  // setCampaigns
 }) => {
   const methods = useForm();
   const [error, setError] = useState<string | null>(null);
@@ -73,13 +73,13 @@ const CreateCompaignModal: FC<CreateCompaignModalProps> = ({
 
   const onSubmit = (data: any) => {
     setError(null);
-    console.log(data);
+    console.log({ ...data, platform });
     const res = MockCreateCampaign({ ...data, platform });
     if (res.succeed) {
       // Store un localstorage for mocking
       // setCampaignsInLocalStorage(data);
       // setCampaigns(data);
-      handleClose();
+      // handleClose();
     } else {
       setError(res?.message || 'An error occured please try again');
     }
