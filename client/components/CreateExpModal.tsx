@@ -8,12 +8,7 @@ import RHFTextField from './RHFTextField';
 const CreateExpModal = ({ handleClose }: any) => {
   const methods = useForm();
 
-  const {
-    reset,
-    setError,
-    handleSubmit,
-    formState: { errors, isSubmitting }
-  } = methods;
+  const { handleSubmit } = methods;
 
   const onSubmit = async (data: any) => {
     const sessionId = await generateNFT(data.name, data.symbol);
