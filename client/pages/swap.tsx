@@ -21,7 +21,7 @@ const DEFAULT_TOKEN = {
 
 type TokenData = {
   amount: number;
-  symbol: string;
+  symbol?: string;
 };
 
 type OnTokenChange = (token: TokenData) => void;
@@ -121,8 +121,8 @@ const TokenInput = ({
           value={amount}
           onChange={(e) =>
             onChange({
-              amount: Number(e.target.value),
-              symbol: token?.symbol ?? ''
+              amount: parseInt(e.target.value),
+              symbol: token?.symbol
             })
           }
         />
