@@ -5,16 +5,19 @@ interface MockCreateCampaignResponse {
 
 export const MockCreateCampaign = ({
   name,
-  platform
+  platform,
+  compaignLink,
+  tokenQuantity
 }: any): MockCreateCampaignResponse => {
   // This is a mock to create a campaign
 
-  console.log(name, platform);
+  console.log(name, platform, compaignLink, tokenQuantity);
 
-  if (!name || !platform)
+  if (!name || !platform || !compaignLink || !tokenQuantity)
     return {
       succeed: false,
-      message: 'The name, platform fields are mandatory'
+      message:
+        'The name, platform, compaignLink and tokenQuantity fields are mandatory'
     };
 
   if (name === 'test')

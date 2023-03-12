@@ -34,7 +34,8 @@ export interface CreateCompaignModalProps {
   className?: string;
   open: boolean;
   handleClose: () => void;
-  // setCampaigns: SetStateAction<any>;
+  setCampaigns: SetStateAction<any>;
+  campaigns: Array<any>;
 }
 
 const optionsPlatform = [
@@ -60,8 +61,9 @@ const platformActions: {
 const CreateCompaignModal: FC<CreateCompaignModalProps> = ({
   className,
   handleClose,
-  open
-  // setCampaigns
+  open,
+  campaigns,
+  setCampaigns
 }) => {
   const methods = useForm();
   const [error, setError] = useState<string | null>(null);
@@ -77,9 +79,11 @@ const CreateCompaignModal: FC<CreateCompaignModalProps> = ({
     const res = MockCreateCampaign({ ...data, platform });
     if (res.succeed) {
       // Store un localstorage for mocking
-      // setCampaignsInLocalStorage(data);
-      // setCampaigns(data);
-      // handleClose();
+      const newCampaigns = campaigns;
+      newCampaigns.push({ ...data, platform });
+      setCampaignsInLocalStorage(newCampaigns);
+      setCampaigns(newCampaigns);
+      handleClose();
     } else {
       setError(res?.message || 'An error occured please try again');
     }
@@ -105,9 +109,9 @@ const CreateCompaignModal: FC<CreateCompaignModalProps> = ({
                   variant='standard'
                   required
                 />
-                <FormControl fullWidth>
+                <FormControl fullWidth sx={{ mt: 3, mb: 2 }}>
                   <InputLabel id='demo-simple-select-label'>
-                    Platform
+                    Choose your platform
                   </InputLabel>
                   <Select
                     labelId='demo-simple-select-label'
@@ -127,6 +131,9 @@ const CreateCompaignModal: FC<CreateCompaignModalProps> = ({
                   </Select>
                 </FormControl>
                 <Box>
+                  <InputLabel id='demo-simple-select-label'>
+                    Choose the rewarding actions:
+                  </InputLabel>
                   <FormGroup sx={{ display: 'flex', flexDirection: 'row' }}>
                     {platformActions[platform]?.map((action, i) => (
                       <FormControlLabel
@@ -137,6 +144,18 @@ const CreateCompaignModal: FC<CreateCompaignModalProps> = ({
                     ))}
                   </FormGroup>
                 </Box>
+                <RHFTextField
+                  name='compaignLink'
+                  label='Link of the campaign'
+                  variant='standard'
+                  required
+                />
+                <RHFTextField
+                  name='tokenQuantity'
+                  label='Choose the amount of token allocated'
+                  variant='standard'
+                  required
+                />
               </FormProvider>
             </DialogContentText>
           </DialogContent>

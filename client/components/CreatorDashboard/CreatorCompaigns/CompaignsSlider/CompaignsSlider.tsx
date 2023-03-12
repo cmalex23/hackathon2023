@@ -9,6 +9,7 @@ import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 import cn from 'classnames';
 import s from './CompaignsSlider.module.css';
+import { Campaign } from '@mui/icons-material';
 
 export interface CompaignsSliderProps {
   compaigns: Array<string>;
@@ -73,7 +74,11 @@ const CompaignsSlider: FC<CompaignsSliderProps> = ({
             >
               <Card sx={{ mt: 2, width: '100%', maxWidth: 200, height: 200 }}>
                 <CardContent sx={{ textAlign: 'center' }}>
-                  {compaign}
+                  {Object.keys(compaign).map((k, j) => (
+                    <p key={`compaignsList-${i}-${j}`}>
+                      {k} : {compaign[k as any]}
+                    </p>
+                  ))}
                 </CardContent>
               </Card>
             </div>
