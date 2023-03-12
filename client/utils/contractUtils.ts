@@ -73,6 +73,48 @@ export const generateNFT = async (name: string, symbol: string) => {
   return sessionId;
 };
 
+export const onAllowMe = async (expSymbol: string) => {
+  const transaction = {
+    value: 0,
+    data: `setLocalRoles@${toHex(expSymbol)}`,
+    receiver: contractAddress,
+    gasLimit: '60000000'
+  };
+  await refreshAccount();
+
+  const { sessionId /*, error*/ } = await sendTransactions({
+    transactions: transaction,
+    transactionsDisplayInfo: {
+      processingMessage: 'Processing Transaction',
+      errorMessage: 'An error has occured during transaction',
+      successMessage: 'Transaction successful'
+    },
+    redirectAfterSign: false
+  });
+  return sessionId;
+};
+
+export const onCreateNFT = async () => {
+  const transaction = {
+    value: 0,
+    data: `createNft`,
+    receiver: contractAddress,
+    gasLimit: '60000000'
+  };
+  await refreshAccount();
+
+  const { sessionId /*, error*/ } = await sendTransactions({
+    transactions: transaction,
+    transactionsDisplayInfo: {
+      processingMessage: 'Processing Transaction',
+      errorMessage: 'An error has occured during transaction',
+      successMessage: 'Transaction successful'
+    },
+    redirectAfterSign: false
+  });
+  return sessionId;
+};
+
 function toHex(str: string) {
   let result = '';
   for (let i = 0; i < str.length; i++) {

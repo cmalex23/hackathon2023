@@ -8,20 +8,21 @@ import {
   Container,
   Typography
 } from '@mui/material';
+import CreateExpModal from '../../CreateExpModal';
 import TitleView from '../../TitleView';
 import CreatorCompaigns from '../CreatorCompaigns';
-import CreateExpModal from '../../CreateExpModal';
 
-import s from './EditCreator.module.css';
-import { smartContract } from '../../Dahsboard/Actions/helpers/smartContract';
+import {
+  Address,
+  AddressValue,
+  ContractFunction,
+  ResultsParser
+} from '@multiversx/sdk-core/out';
 import { useGetAccount, useGetNetworkConfig } from '@multiversx/sdk-dapp/hooks';
 import { ProxyNetworkProvider } from '@multiversx/sdk-network-providers/out';
-import {
-  ContractFunction,
-  ResultsParser,
-  AddressValue,
-  Address
-} from '@multiversx/sdk-core/out';
+import { onAllowMe, onCreateNFT } from '../../../utils/contractUtils';
+import { smartContract } from '../../Dahsboard/Actions/helpers/smartContract';
+import s from './EditCreator.module.css';
 
 const resultsParser = new ResultsParser();
 
@@ -30,7 +31,8 @@ const EditCreator = ({ creator }: any) => {
 
   const { address } = useGetAccount();
   const { network } = useGetNetworkConfig();
-  const [experienceSymbol, setExperienceSymbol] = useState<string>();
+  const [experienceSymbol, setExperienceSymbol] =
+    useState<string>('SLM-97d6fc');
 
   const proxy = useMemo(() => {
     return new ProxyNetworkProvider(network);
@@ -62,6 +64,14 @@ const EditCreator = ({ creator }: any) => {
     getFromQuery().catch(console.error);
   }, [address, proxy]);
 
+  const allowMe = () => {
+    onAllowMe(experienceSymbol);
+  };
+
+  const createNFT = () => {
+    onCreateNFT();
+  };
+
   return (
     <Container className={'text-center'}>
       <h1>Welcome {creator.name}</h1>
@@ -91,11 +101,21 @@ const EditCreator = ({ creator }: any) => {
         <Card sx={{ mt: 2 }}>
           <CardContent sx={{ textAlign: 'center' }}>
             <Typography variant='h5'>Experience 1</Typography>
-            {experienceSymbol && (
-              <Typography variant='h5'>
-                Your Experience Symbol: {experienceSymbol}
-              </Typography>
-            )}
+            <Typography variant='h5'>
+              Your Experience Symbol: {experienceSymbol}
+            </Typography>
+
+            <Button onClick={allowMe} variant='contained' sx={{ mt: 2 }}>
+              Allow me
+            </Button>
+
+            <Button
+              onClick={createNFT}
+              variant='contained'
+              sx={{ ml: 2, mt: 2 }}
+            >
+              Create NFT
+            </Button>
           </CardContent>
         </Card>
       )}
