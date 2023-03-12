@@ -52,6 +52,27 @@ export const onBuyExperience = async (amount: number) => {
   return sessionId;
 };
 
+export const generateNFT = async (name: string, symbol: string) => {
+  const transaction = {
+    value: 50000000000000000,
+    data: `sftIssue@${toHex(name)}@${toHex(symbol)}`,
+    receiver: contractAddress,
+    gasLimit: '60000000'
+  };
+  await refreshAccount();
+
+  const { sessionId /*, error*/ } = await sendTransactions({
+    transactions: transaction,
+    transactionsDisplayInfo: {
+      processingMessage: 'Processing Transaction',
+      errorMessage: 'An error has occured during transaction',
+      successMessage: 'Transaction successful'
+    },
+    redirectAfterSign: false
+  });
+  return sessionId;
+};
+
 function toHex(str: string) {
   let result = '';
   for (let i = 0; i < str.length; i++) {

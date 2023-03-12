@@ -35,8 +35,8 @@ const CreatorCompaigns = ({ creator, className }: any) => {
         <Button
           className={s.createConpaignButton}
           onClick={() => setOpenModal(true)}
+          startIcon={<AddIcon />}
         >
-          <AddIcon />
           Create new compaign
         </Button>
         <CreateCompaignModal

@@ -1,12 +1,16 @@
 import React from 'react';
 
-import { Button, Card, CardContent, Container, Stack } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { Button, Card, CardContent, Container } from '@mui/material';
 import TitleView from '../../TitleView';
 import CreatorCompaigns from '../CreatorCompaigns';
 
+import CreateExpModal from '../../CreateExpModal';
 import s from './EditCreator.module.css';
 
 const EditCreator = ({ creator }: any) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
     <Container className={'text-center'}>
       <h1>Welcome {creator.name}</h1>
@@ -21,6 +25,17 @@ const EditCreator = ({ creator }: any) => {
       <TitleView className={s.title}>My Compaigns</TitleView>
       <CreatorCompaigns />
       <TitleView className={s.title}>My Experiences</TitleView>
+
+      <Button
+        onClick={() => setIsOpen(true)}
+        sx={{ mt: 2 }}
+        startIcon={<AddIcon />}
+      >
+        Create Experience
+      </Button>
+
+      {isOpen && <CreateExpModal handleClose={() => setIsOpen(false)} />}
+
       <Card sx={{ mt: 2 }}>
         <CardContent sx={{ textAlign: 'center' }}>
           {/* <h2>My Experiences</h2> */}

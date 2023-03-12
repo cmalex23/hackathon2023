@@ -24,7 +24,7 @@ export default function Index() {
                   </h2>
 
                   <p className='mb-3'>
-                    This is an MultiversX dapp sample.
+                    This is an MultiversX dapp.
                     <br /> Login using your MultiversX wallet.
                   </p>
 
